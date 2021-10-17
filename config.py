@@ -1,4 +1,9 @@
+from requests_oauthlib import OAuth1Session
+
 CONSUMER_KEY         = 'sofb9YOnRuhLgVoRBmTo1DS0P'
 CONSUMER_SECRET  = 'uqAvNrMJjqvzcZrPwfGenCUdYLaeQYXw9iY1i4fkyUZmcpIy4u'
 ACCESS_TOKEN        = '1028203567927066624-rmjkWF8XW2vdGw9oHmGLDhXTukEzjH'
 ACCESS_TOKEN_SECRET = 'SHUvTPwak8q50U1Xkod3NIUz0XAwNpM8gKS9DsBo4UDzO'
+
+def CreateOAuthSession():
+    return OAuth1Session(CONSUMER_KEY,CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
