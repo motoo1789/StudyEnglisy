@@ -14,14 +14,6 @@ def readFilePath():
     filepaths = glob.glob("./Apex/*.txt")
     return filepaths
 
-def readFileLine(files_code):
-    for file in readFilePath():
-        with  open(file,"r",encoding=files_code[file],errors="replace") as f:
-            lists = f.readlines()
-            for line in lists:
-                print(line)
-
-            
 def detect_char(directory):
     
     # detector.feed: バイト列を読みこませるメソッド
@@ -44,3 +36,21 @@ def detect_char(directory):
             files_code[file] = detector.result["encoding"]
 
     return files_code
+
+def readFileLine(files_code):
+    dictFileInfo = {}
+    for file in readFilePath():
+        with  open(file,"r",encoding=files_code[file],errors="replace") as f:
+            tweetcontens = f.readlines()
+            filename = splitFileName(file)
+
+            dictFileInfo[filename] = tweetcontens
+
+    # for key in dictFileInfo.keys():
+    #     tmp = dictFileInfo[key]
+    #     print(tmp[0])
+
+def splitFileName(targetFilePath):
+    splitresult = os.path.splitext(os.path.basename(targetFilePath))[0]
+    print(splitresult)
+    return splitresult
