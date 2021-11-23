@@ -4,11 +4,11 @@ import os
 from chardet.universaldetector import UniversalDetector
 
 
-
 def readexe():
     filepaths = readFilePath()
-    files_code = detect_char(filepaths)
-    readFileLine(files_code)
+
+    return readFileLine()
+
 
 def readFilePath():
     filepaths = glob.glob("./Apex/*.txt")
@@ -37,20 +37,17 @@ def detect_char(directory):
 
     return files_code
 
-def readFileLine(files_code):
+def readFileLine():
     dictFileInfo = {}
     for file in readFilePath():
-        with  open(file,"r",encoding=files_code[file],errors="replace") as f:
+        with  open(file,"r",encoding='UTF-8',errors="replace") as f:
             tweetcontens = f.readlines()
             filename = splitFileName(file)
-
             dictFileInfo[filename] = tweetcontens
 
-    # for key in dictFileInfo.keys():
-    #     tmp = dictFileInfo[key]
-    #     print(tmp[0])
+    return dictFileInfo
+
 
 def splitFileName(targetFilePath):
     splitresult = os.path.splitext(os.path.basename(targetFilePath))[0]
-    print(splitresult)
     return splitresult

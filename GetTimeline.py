@@ -1,4 +1,5 @@
 import json
+from OutputFile import outputTweetsFile
 
 def getTimeline(twitter):
     url_timeline = "https://api.twitter.com/1.1/statuses/user_timeline.json"
@@ -31,10 +32,7 @@ def getTimeline(twitter):
             timelines = json.loads(res.text)
             count = 1
             for line in timelines:
-                tweetOutputFile = open(("./Apex/" + userID + str(count) + ".txt"), "w", encoding="utf-8")
-                tweetOutputFile.write(line["text"])
-                tweetOutputFile.close()
-                
+                outputTweetsFile(count,line)
                 print(line["user"]["name"] + "::" + line["text"])
                 print(line["created_at"])
                 print("****************************************************")
